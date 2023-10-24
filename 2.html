@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 2</title>
+</head>
+<body>
+
+<div id="display"></div>
+
+<script>
+    
+    let nome = prompt("Informe o nome do contribuinte:");
+    let cpf = prompt("Informe o CPF do contribuinte:");
+    let rendaAnual = parseFloat(prompt("Informe a renda anual:"));
+    let numeroDeDependentes = parseInt(prompt("Informe o número de dependentes:"));
+
+    let descontoDependentes = numeroDeDependentes * 110;
+
+    let rendaLiquida = rendaAnual - descontoDependentes;
+
+    let aliquota;
+    if (rendaLiquida <= 900) {
+        aliquota = 0; // Isento
+    } else if (rendaLiquida > 900 && rendaLiquida <= 5000) {
+        aliquota = 0.05; // 5%
+    } else if (rendaLiquida > 5000 && rendaLiquida <= 10000) {
+        aliquota = 0.10; // 10%
+    } else {
+        aliquota = 0.15; // 15%
+    }
+
+    let valorImposto = rendaLiquida * aliquota;
+
+    document.getElementById("display").innerHTML = `Contribuinte: ${nome}</br>CPF: ${cpf}</br>Renda Líquida: R$ ${rendaLiquida.toFixed(2)}</br>Alíquota: ${aliquota * 100}%</br>Valor do Imposto: R$ ${valorImposto.toFixed(2)}`;
+
+</script>
+</body>
+</html>

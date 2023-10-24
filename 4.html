@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 4</title>
+</head>
+<body>
+
+<h2>Resumo</h2>
+<div id="resumo"></div>
+
+<h2>Detalhamento de alunos</h2>
+<div id="detalheAlunos"></div>
+
+<script>
+    let totalAlunos = 70;
+    let totalAulas = 32;
+    let aprovados = 0;
+    let reprovadosPorNota = 0;
+    let reprovadosPorFalta = 0;
+    let somatorioMedias = 0;
+    let maiorMedia = -Infinity;
+    let menorMedia = Infinity;
+
+    for (let i = 1; i <= totalAlunos; i++) {
+        let matricula = prompt(`Digite o número de matrícula do aluno ${i} de ${totalAlunos}:`);
+        let nota1 = parseFloat(prompt("Digite a primeira nota:"));
+        let nota2 = parseFloat(prompt("Digite a segunda nota:"));
+        let nota3 = parseFloat(prompt("Digite a terceira nota:"));
+        let frequencia = parseFloat(prompt("Digite o número de aulas frequentadas:"));
+
+        let mediaAluno = (nota1 + nota2 + nota3) / 3;
+
+        somatorioMedias += mediaAluno;
+
+        if (mediaAluno > maiorMedia) {
+            maiorMedia = mediaAluno;
+        }
+
+        if (mediaAluno < menorMedia) {
+            menorMedia = mediaAluno;
+        }
+
+        if (mediaAluno >= 7 && (frequencia / totalAulas) >= 0.8) {
+            aprovados++;
+            document.getElementById("detalheAlunos").innerHTML += 
+                `Matrícula: ${matricula}</br>Média Final: ${mediaAluno.toFixed(2)}</br>Resultado: Aprovado</br><hr>`;
+        } else if (mediaAluno < 7) {
+            reprovadosPorNota++;
+            document.getElementById("detalheAlunos").innerHTML += 
+                `Matrícula: ${matricula}</br>Média Final: ${mediaAluno.toFixed(2)}</br>Resultado: Reprovado por Nota</br><hr>`;
+        } else {
+            reprovadosPorFalta++;
+            document.getElementById("detalheAlunos").innerHTML += 
+                `Matrícula: ${matricula}</br>Média Final: ${mediaAluno.toFixed(2)}</br>Resultado: Reprovado por Falta</br><hr>`;
+        }
+    }
+
+    let mediaTurma = somatorioMedias / totalAlunos;
+
+    document.getElementById("resumo").innerHTML = ` </br>
+        Média da Turma: ${mediaTurma.toFixed(2)} </br>
+        Maior Média: ${maiorMedia.toFixed(2)} </br>
+        Menor Média: ${menorMedia.toFixed(2)} </br>
+        Total de Alunos Aprovados: ${aprovados} </br>
+        Total de Alunos Reprovados por Nota: ${reprovadosPorNota}</br>
+        Total de Alunos Reprovados por Falta: ${reprovadosPorFalta} </br><hr>
+        `;
+
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 3</title>
+</head>
+<body>
+
+<div id="display"></div>
+
+<script>
+    let totalPecas = 4;
+    let pecasAprovadas = 0;
+    let pecasReprovadas = 0;
+    let pecasReprovadasNumeros = [];
+
+    for (let i = 1; i <= totalPecas; i++) {
+        let numeroDaPeca = prompt(`Digite o número da peça ${i} de ${totalPecas}:`);
+        let estadoDaPeca = prompt("Digite o estado da peça ([0] Reprovado ou [1] Aprovado):").toLowerCase();
+
+        if (estadoDaPeca == 1) {
+            pecasAprovadas++;
+        } else if (estadoDaPeca == 0) {
+            pecasReprovadas++;
+            pecasReprovadasNumeros.push(numeroDaPeca);
+        } else {
+            alert("Estado inválido. A peça não será contabilizada.");
+        }
+    }
+
+    document.getElementById("display").innerHTML = `</br>
+        Total de peças aprovadas: ${pecasAprovadas}</br>
+        Total de peças reprovadas: ${pecasReprovadas}</br>
+        Números das peças reprovadas: ${pecasReprovadasNumeros.join(", ")}</br><hr>`;
+    
+
+</script>
+</body>
+</html>
