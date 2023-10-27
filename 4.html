@@ -20,8 +20,8 @@
     let reprovadosPorNota = 0;
     let reprovadosPorFalta = 0;
     let somatorioMedias = 0;
-    let maiorMedia = -Infinity;
-    let menorMedia = Infinity;
+    let maiorMedia ;
+    let menorMedia ;
 
     for (let i = 1; i <= totalAlunos; i++) {
         let matricula = prompt(`Digite o número de matrícula do aluno ${i} de ${totalAlunos}:`);
@@ -33,6 +33,11 @@
         let mediaAluno = (nota1 + nota2 + nota3) / 3;
 
         somatorioMedias += mediaAluno;
+
+        if (i = 1){
+            maiorMedia = mediaAluno;
+            menorMedia = mediaAluno;
+        }
 
         if (mediaAluno > maiorMedia) {
             maiorMedia = mediaAluno;

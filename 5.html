@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 5</title>
+</head>
+<body>
+
+<h2>Resumo</h2>
+<div id="resumo"></div>
+</br>
+<h2>Candidatos com experiência e maiores de idade</h2>
+<div id="candidatos"></div>
+
+<script>
+    
+    let candidatos = [];
+
+    do {
+        
+        let nrCandidato = prompt("Insira o número do cadidato:");
+        let idadeCandidato = parseInt(prompt("Insira a idade do candidato:")); // Convertendo para número
+        let sexoCandidato = prompt("Insira o sexo do candidato:");
+        let experienciaCandidato = prompt("O candidato possui experiência profissional? (Sim/Não)");
+
+        candidatos.push({ 
+            nrCandidato: nrCandidato,
+            idadeCandidato: idadeCandidato,
+            sexoCandidato: sexoCandidato,
+            experienciaCandidato: experienciaCandidato 
+        });
+        
+        var continuar = prompt("Deseja Continuar Cadastrando? (Sim/Não)");
+    } while (continuar.toLowerCase() === "sim");
+
+    document.getElementById("resumo").innerHTML = candidatos.map(c => `Número: ${c.nrCandidato}, Idade: ${c.idadeCandidato}`).join("</br>");
+
+    let d = candidatos.filter(candidato => candidato.idadeCandidato >= 18 && candidato.experienciaCandidato.toLowerCase() == 'sim');
+
+    document.getElementById("candidatos").innerHTML += d.map(pessoa => `<p>Número: ${pessoa.nrCandidato}, Idade: ${pessoa.idadeCandidato}</p>`).join('');
+
+    let totalIdade = candidatos.reduce((acumulador, pessoa) => acumulador + pessoa.idadeCandidato, 0);
+    let mediaIdade = totalIdade / candidatos.length;
+
+    document.getElementById("resumo").innerHTML += "</br></br>Idade média dos candidatos: " + mediaIdade;
+    document.getElementById("resumo").innerHTML += "</br></br>Número total de candidatos e candidatas: " + candidatos.length;
+
+</script>
+</body>
+</html>
